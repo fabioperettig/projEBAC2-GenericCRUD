@@ -52,6 +52,21 @@ public abstract class GenericDAO <T extends Persistente, E extends Serializable>
         return null;
     }
 
+    /// Cria o mapa (mapaInterno) de cada Classe (Cliente, Produto, etc) com singleton
+    private Map<E, T> getMapa(){
+
+        Map<E, T> mapaInterno = (Map<E, T>) this.singletonMap.getMap().get(getTipoClasse());
+
+        if (mapaInterno == null){
+            mapaInterno = new HashMap<>();
+            this.singletonMap.getMap().put(getTipoClasse(), mapaInterno);
+        }
+
+        return mapaInterno;
+
+    }
+
+    /// CRUD Methods
     @Override
     public Boolean create(T entity) throws TipoChaveNaoEncontradaException {
         Map<E,T> mapaInterno = getMapa();
@@ -63,15 +78,6 @@ public abstract class GenericDAO <T extends Persistente, E extends Serializable>
 
         mapaInterno.put(chave, entity);
         return true;
-    }
-
-    private Map<E, T> getMapa(){
-        Map<E, T> mapaInterno = (Map<E, T>) this.singletonMap.getMap().get(getTipoClasse());
-        if (mapaInterno == null){
-            mapaInterno = new HashMap<>();
-            this.singletonMap.getMap().put(getTipoClasse(), mapaInterno);
-        }
-        return mapaInterno;
     }
 
     @Override

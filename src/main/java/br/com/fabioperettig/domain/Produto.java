@@ -14,6 +14,12 @@ public class Produto implements Persistente {
 
     private BigDecimal valor;
 
+    public Produto(String codigo, String nome, BigDecimal valor) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.valor = valor;
+    }
+
     public String getCodigo() {
         return codigo;
     }

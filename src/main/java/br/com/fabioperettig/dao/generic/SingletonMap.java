@@ -13,6 +13,8 @@ public class SingletonMap {
 
     private SingletonMap(){
         map = new HashMap<>();
+        /// tbm poderia ser
+        /// map = new HashMap<Class, Map<?,?>>();
     }
 
     /// metodo que garante o retorno apenas da INSTÂNCIA do map

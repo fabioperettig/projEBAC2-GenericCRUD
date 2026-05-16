@@ -12,6 +12,12 @@ public class Cliente implements Persistente {
 
     private String email;
 
+    public Cliente(String nome, Long cpf, String email) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email+"@mail";
+    }
+
     public String getNome() {
         return nome;
     }
