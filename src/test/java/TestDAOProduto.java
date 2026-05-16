@@ -1,10 +1,10 @@
-import br.com.fabioperettig.dao.ClienteDAO;
-import br.com.fabioperettig.dao.IProdutoDAO;
-import br.com.fabioperettig.domain.Cliente;
-import br.com.fabioperettig.domain.Produto;
 import br.com.fabioperettig.exceptions.TipoChaveNaoEncontradaException;
-import mockDAO.ClienteDAOMock;
+import br.com.fabioperettig.domain.Produto;
+import br.com.fabioperettig.dao.IProdutoDAO;
+import br.com.fabioperettig.dao.ProdutoDAO;
+
 import mockDAO.ProdutoDAOMock;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,5 +38,28 @@ public class TestDAOProduto {
         Assertions.assertEquals(readProd.getCodigo(), p0102.getCodigo());
     }
 
+    @Test
+    public void testUpdateProduto() throws TipoChaveNaoEncontradaException {
+        ProdutoDAO dao = new ProdutoDAO();
+        Produto prd1 = new Produto("0011", "prod1", BigDecimal.TEN);
+        Produto prd2 = new Produto("0020", "prod2", BigDecimal.ZERO);
+
+        iProdutoDAO.create(prd1);
+        dao.atualizarDados(prd2,prd1);
+
+        Assertions.assertEquals(BigDecimal.ZERO, prd1.getValor());
+    }
+
+    @Test
+    public void testDeleteProduto() throws TipoChaveNaoEncontradaException {
+        ProdutoDAOMock daoMock = new ProdutoDAOMock();
+        Produto prd1 = new Produto("10101", "prd1", BigDecimal.TEN);
+        iProdutoDAO.create(prd1);
+
+        Map<Long, Produto> mockMap = daoMock.getProductMockMap();
+        iProdutoDAO.delete(prd1.getCodigo());
+
+        Assertions.assertTrue(mockMap.isEmpty());
+    }
 
 }
