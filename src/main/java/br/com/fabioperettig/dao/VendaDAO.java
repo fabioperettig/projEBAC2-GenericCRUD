@@ -9,7 +9,7 @@ public class VendaDAO extends GenericDAO<Venda, String> implements IVenda {
 
     @Override
     public void finalizarVenda(Venda venda) throws TipoChaveNaoEncontradaException {
-        venda.setStatus(Venda.Status.CONLCUIDA);
+        venda.setStatus(Venda.Status.CONCLUIDA);
         super.update(venda);
     }
 

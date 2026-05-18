@@ -6,7 +6,7 @@ import br.com.fabioperettig.exceptions.TipoChaveNaoEncontradaException;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.List;
+
 
 public abstract class GenericService <T extends Persistente, E extends Serializable> implements IGenericService<T,E>{
 

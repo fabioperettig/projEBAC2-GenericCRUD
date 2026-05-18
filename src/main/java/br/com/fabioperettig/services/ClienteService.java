@@ -30,4 +30,9 @@ public class ClienteService extends GenericService<Cliente, Long> implements ICl
     public void deleteServC(Long cpf) {
         this.dao.delete(cpf);
     }
+
+    @Override
+    public void update(Cliente entity) throws TipoChaveNaoEncontradaException {
+
+    }
 }

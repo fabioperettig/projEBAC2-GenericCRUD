@@ -12,7 +12,7 @@ import java.util.Set;
 public class Venda implements Persistente {
 
     public enum Status {
-        INICIADA, CONLCUIDA, CANCELADA;
+        INICIADA, CONCLUIDA, CANCELADA;
     }
 
     @TipoChave("getCodigo")
@@ -61,12 +61,13 @@ public class Venda implements Persistente {
             ProdutoQtd produtoQtd = new ProdutoQtd();
             produtoQtd.setProduto(produto);
             produtoQtd.adicionar(qtd);
+            produtos.add(produtoQtd);
         }
         recalcularValorTotalVenda();
     }
 
     private void validarStatus(){
-        if (this.status == Status.CONLCUIDA){
+        if (this.status == Status.CONCLUIDA){
             throw new UnsupportedOperationException("IMPOSSÍVEL ALTERAR VENDA FINALIZADA");
         }
     }

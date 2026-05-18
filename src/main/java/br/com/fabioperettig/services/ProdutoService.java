@@ -2,6 +2,7 @@ package br.com.fabioperettig.services;
 
 import br.com.fabioperettig.dao.generic.IGenericDAO;
 import br.com.fabioperettig.domain.Produto;
+import br.com.fabioperettig.exceptions.TipoChaveNaoEncontradaException;
 import br.com.fabioperettig.services.generic.GenericService;
 
 public class ProdutoService extends GenericService<Produto, String> implements IProdutoService{
@@ -10,4 +11,8 @@ public class ProdutoService extends GenericService<Produto, String> implements I
         super(dao);
     }
 
+    @Override
+    public void update(Produto entity) throws TipoChaveNaoEncontradaException {
+
+    }
 }
